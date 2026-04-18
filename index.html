@@ -1,133 +1,228 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RK Luxury Spa - Basti</title><style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #000, #1a1a1a);
-  color: white;
-  text-align: center;
-}
+<title>RK Luxury Spa</title>
 
-/* Header */
-header {
-  padding: 25px;
-  font-size: 30px;
-  color: gold;
-}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-/* Hero */
+<style>
+body {margin:0;font-family:'Poppins',sans-serif;background:#0a0a0a;color:white;}
+header {position:fixed;width:100%;top:0;background:rgba(0,0,0,0.8);padding:15px;text-align:center;color:gold;z-index:1000;}
+
 .hero {
-  padding: 20px;
+  height:100vh;
+  background:url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874') center/cover no-repeat;
+  display:flex;align-items:center;justify-content:center;
 }
-
 .hero h1 {
-  color: gold;
+  background:rgba(0,0,0,0.6);
+  padding:20px;border-radius:15px;font-size:45px;
 }
 
-/* Slider */
-.slider {
-  width: 90%;
-  max-width: 420px;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(255,215,0,0.3);
+.section {padding:80px 20px;text-align:center;}
+
+.card {
+  display:inline-block;width:250px;margin:15px;padding:20px;
+  border-radius:20px;background:rgba(255,255,255,0.05);
+  transition:0.4s;
+}
+.card:hover {transform:scale(1.1);background:gold;color:black;}
+
+.gallery img {width:260px;margin:10px;border-radius:12px;}
+
+input,select {
+  padding:10px;margin:10px;border-radius:10px;border:none;width:200px;
 }
 
-.slides {
-  display: flex;
-  width: 1000%;
-  animation: slide 25s infinite;
+button {
+  padding:12px 25px;border-radius:25px;border:none;
+  background:gold;cursor:pointer;font-weight:bold;margin:5px;
+}
+button:hover {background:orange;}
+
+.review-box {
+  border:1px solid gold;
+  margin:10px;
+  padding:10px;
+  border-radius:10px;
 }
 
-.slides img {
-  width: 100%;
+.popup {
+  position:fixed;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:black;padding:30px;border-radius:15px;display:none;
 }
 
-/* Animation */
-@keyframes slide {
-  0% {margin-left: 0;}
-  10% {margin-left: -100%;}
-  20% {margin-left: -200%;}
-  30% {margin-left: -300%;}
-  40% {margin-left: -400%;}
-  50% {margin-left: -500%;}
-  60% {margin-left: -600%;}
-  70% {margin-left: -700%;}
-  80% {margin-left: -800%;}
-  90% {margin-left: -900%;}
-  100% {margin-left: 0;}
+footer {background:black;padding:20px;text-align:center;}
+</style>
+</head>
+
+<body>
+
+<header>RK Luxury Spa</header>
+
+<section class="hero">
+<h1>Feel the Luxury Experience</h1>
+</section>
+
+<section class="section">
+<h2>Our Services</h2>
+<div class="card">Full Body Massage</div>
+<div class="card">Aroma Therapy</div>
+<div class="card">Deep Tissue Massage</div>
+<div class="card">Couple Spa</div>
+</section>
+
+<section class="section gallery">
+<h2>Luxury Spa Gallery</h2>
+<img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874">
+<img src="https://images.unsplash.com/photo-1556228720-195a672e8a03">
+<img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773">
+<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2">
+<img src="https://images.unsplash.com/photo-1596178060810-72b7b90c3d74">
+<img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35">
+</section>
+
+<section class="section">
+<h2>Book Appointment</h2>
+
+<input type="text" id="name" placeholder="Your Name"><br>
+<input type="date" id="date"><br>
+
+<select id="service">
+<option>Select Service</option>
+<option>Full Body</option>
+<option>Aroma</option>
+<option>Deep Tissue</option>
+</select><br>
+
+<button onclick="payNow()">Pay via UPI</button>
+<button onclick="whatsapp()">WhatsApp Booking</button>
+</section>
+
+<!-- CONTACT -->
+<section class="section">
+<h2>Contact & Payment</h2>
+
+<p>📞 Mobile: <span id="mobile">8503956450</span></p>
+<p>💳 UPI ID: <span id="upi">8503956450@ybl</span></p>
+
+<button onclick="copyText('mobile')">Copy Number</button>
+<button onclick="copyText('upi')">Copy UPI</button><br>
+
+<a href="tel:8503956450">
+<button>📞 Call Now</button>
+</a>
+</section>
+
+<!-- REVIEWS -->
+<section class="section">
+<h2>Customer Reviews</h2>
+
+<input type="text" id="reviewName" placeholder="Your Name"><br>
+
+<select id="rating">
+<option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+<option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+<option value="⭐⭐⭐">⭐⭐⭐</option>
+</select><br>
+
+<input type="text" id="reviewText" placeholder="Write your review"><br>
+
+<button onclick="addReview()">Submit Review</button>
+
+<div id="reviews"></div>
+</section>
+
+<!-- LOCATION -->
+<section class="section">
+<h2>Our Location</h2>
+
+<p>📍 RK Luxury Spa, Basti District, Uttar Pradesh, India</p>
+
+<a href="https://www.google.com/maps/search/?api=1&query=Basti+Uttar+Pradesh" target="_blank">
+<button>📍 Open in Google Maps</button>
+</a>
+
+<br><br>
+
+<iframe 
+src="https://maps.google.com/maps?q=Basti%20Uttar%20Pradesh&z=13&output=embed"
+width="90%" height="300" style="border-radius:15px;">
+</iframe>
+
+</section>
+
+<div class="popup" id="popup">
+<p>Processing Payment...</p>
+</div>
+
+<footer>© RK Luxury Spa 2026</footer>
+
+<script>
+function payNow(){
+  document.getElementById("popup").style.display="block";
+
+  setTimeout(()=>{
+    window.location.href="upi://pay?pa=8503956450@ybl&pn=RK Luxury Spa&cu=INR";
+  },1000);
 }
 
-/* Buttons */
-.btn {
-  background: gold;
-  color: black;
-  padding: 12px 25px;
-  border: none;
-  margin: 10px;
-  border-radius: 25px;
-  font-size: 16px;
+function whatsapp(){
+  let name=document.getElementById("name").value;
+  let date=document.getElementById("date").value;
+  let service=document.getElementById("service").value;
+
+  let msg=`Hello RK Luxury Spa,%0AName:${name}%0ADate:${date}%0AService:${service}`;
+
+  window.open(`https://wa.me/918503956450?text=${msg}`);
 }
 
-/* Services */
-.services {
-  padding: 20px;
+function copyText(id){
+  let text=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text);
+  alert("Copied: "+text);
 }
 
-.service-box {
-  background: rgba(255,255,255,0.05);
-  margin: 15px;
-  padding: 20px;
-  border-radius: 15px;
+// REVIEW SYSTEM
+function addReview(){
+  let name=document.getElementById("reviewName").value;
+  let rating=document.getElementById("rating").value;
+  let text=document.getElementById("reviewText").value;
+
+  if(name==""||text==""){
+    alert("Fill all fields");
+    return;
+  }
+
+  let reviews=JSON.parse(localStorage.getItem("reviews"))||[];
+
+  reviews.push({name,rating,text});
+  localStorage.setItem("reviews",JSON.stringify(reviews));
+
+  showReviews();
 }
 
-/* Location */
-.location {
-  margin-top: 20px;
-  padding: 20px;
-  background: #111;
+function showReviews(){
+  let reviews=JSON.parse(localStorage.getItem("reviews"))||[];
+  let output="";
+
+  reviews.forEach(r=>{
+    output+=`
+    <div class="review-box">
+    <h3>${r.name}</h3>
+    <p>${r.rating}</p>
+    <p>${r.text}</p>
+    </div>`;
+  });
+
+  document.getElementById("reviews").innerHTML=output;
 }
 
-</style></head><body><header>RK Luxury Spa - Basti</header><div class="hero">
-<h1>Luxury Spa at Home in Basti 💆‍♀️</h1>
-<p>Only for Women | Home Service Available</p><!-- PREMIUM IMAGES --><div class="slider">
-  <div class="slides">
-    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1596178060810-72d06c4cde55?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1588776814546-ec7e7e86a9f0?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1601924582975-7e0c3c47c2e4?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1580281657521-6c3a9f0a8b4c?auto=format&fit=crop&w=900&q=90">
-    <img src="https://images.unsplash.com/photo-1600335895229-6e75511892c8?auto=format&fit=crop&w=900&q=90">
-  </div>
-</div><!-- Buttons --><a href="https://wa.me/918503956450?text=Hello%20I%20want%20to%20book%20spa%20service%20in%20Basti">
-<button class="btn">Book on WhatsApp</button>
-</a><a href="upi://pay?pa=8503956450@ybl&pn=RKLuxurySpa&am=999&cu=INR">
-<button class="btn">Pay Now</button>
-</a></div><div class="services"><div class="service-box">
-<h3>Full Body Massage</h3>
-<p>₹999</p>
-</div><div class="service-box">
-<h3>Aroma Oil Therapy</h3>
-<p>₹799</p>
-</div><div class="service-box">
-<h3>Head & Shoulder Relax</h3>
-<p>₹499</p>
-</div></div><!-- LOCATION --><div class="location">
-<h2>📍 Location</h2>
-<p>Basti, Uttar Pradesh</p>
-<p>Home Service Available in Entire City</p>
-</div><footer>
-Contact: rkforever2762@gmail.com <br>
-WhatsApp: 8503956450
-</footer></body>
-</html>u<html>
+showReviews();
+</script>
 
+</body>
 </html>
